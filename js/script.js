@@ -1,7 +1,25 @@
+var lock = new Auth0Lock('P5EDxUyc02sAmpwjQuOAlkrr9GXCgwrZ', 'spiders1999.auth0.com', {
+    auth: {
+      params: {
+        scope: 'openid email'
+      }
+    }
+  });
+
 $(document).ready(function () {
-  $('#btn-login').on('click', loadGrowls);
+  $('#btn-login').on('click', login);
   $('#growl-form').on('submit', createGrowl);
 })
+
+function login(e){
+  e.preventDefault();
+  lock.show();
+}
+function logout(e){
+  e.preventDefault();
+  localStorage.removeItem('id_token');
+  window.location.href = "/";
+}
 
 function createGrowl(e) {
   e.preventDefault();
