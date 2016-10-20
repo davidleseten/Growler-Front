@@ -86,7 +86,8 @@ function loadGrowl(growl) {
 
   var img = $('<img />');
   img.attr('src', growl.posterIcon);
-  console.log(img);
+
+
   var title = $('<h2 />');
   title.text(growl.title);
   title.addClass('postTitle');
@@ -102,9 +103,9 @@ function loadGrowl(growl) {
   var nameHandle = $('<h3 />')
   nameHandle.text(name.text() + handle.text())
 
-  var post = $('<p />');
-  post.text(growl.post);
-  post.addClass('growlPost');
+  var content = $('<p />');
+  content.text(growl.content);
+  content.addClass('growlPost');
 
   var time = $('<p />');
   time.text(growl.timestamp);
@@ -120,7 +121,7 @@ function loadGrowl(growl) {
   growlContentDiv.addClass('growlcontent');
   growlContentDiv.append(title);
   growlContentDiv.append(nameHandle);
-  growlContentDiv.append(post);
+  growlContentDiv.append(content);
   growlContentDiv.append(time);
 
 
