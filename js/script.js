@@ -1,7 +1,51 @@
+var lock = new Auth0Lock('P5EDxUyc02sAmpwjQuOAlkrr9GXCgwrZ', 'spiders1999.auth0.com', {
+    auth: {
+      params: {
+        scope: 'openid email'
+      }
+    }
+  });
+
 $(document).ready(function () {
-  $('#btn-login').on('click', loadGrowls);
+  $('#btn-login').on('click', login);
+  $('#btn-logout').on('click', logout);
   $('#growl-form').on('submit', createGrowl);
 })
+
+function login(e){
+  e.preventDefault();
+  lock.show();
+}
+function logout(e){
+  e.preventDefault();
+  localStorage.removeItem('idToken');
+  $('#user-page').hide();
+  $('#login-page').show();
+  window.location.href = "/";
+}
+
+function loginTest(){
+  if (isLoggedIn){
+    $('#user-page').show();
+    $('#login-page').hide();
+    loadGrowls();
+  } else {
+    $('#user-page').hide();
+    $('#login-page').show();
+  }
+}
+lock.on("authenticated", function(authResult) {
+  lock.getProfile(authResult.idToken, function(error, profile) {
+    if (error) {
+      return;
+    }
+
+    localStorage.setItem('idToken', authResult.idToken);
+    $('#user-page').show();
+    $('#login-page').hide();
+    loadGrowls();
+  });
+});
 
 function createGrowl(e) {
   e.preventDefault();
@@ -11,7 +55,9 @@ function createGrowl(e) {
     data: {
       title: $('#title').val(),
       content: $('#text-area').val()
-    }
+    },
+    headers:
+    {'Authorization':'Bearer ' + localStorage.getItem('idToken')}
   })
   .done(function (growl) {
     console.log('running');
@@ -23,7 +69,10 @@ function createGrowl(e) {
 function loadGrowls() {
   console.log('loadGrowls');
   $.ajax({
-    url: 'https://daveandjordangrowler.herokuapp.com/growls'
+    url: 'https://daveandjordangrowler.herokuapp.com/growls',
+    headers:{
+      'Authorization':'Bearer ' + localStorage.getItem('idToken')
+    }
   })
   .done(function (data) {
     data.forEach(function (datum) {
@@ -86,4 +135,11 @@ function loadGrowl(growl) {
   li.append(containerDiv);
 
   $('#growl-list').append(li);
+}
+function isLoggedIn(){
+  if(localStorage.getItem('idToken')){
+    return true;
+  } else {
+    return false;
+  }
 }
