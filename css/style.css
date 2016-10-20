@@ -1,0 +1,45 @@
+body {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+}
+h1{
+  font-family: 'Fugaz One', cursive;
+}
+#growl-list li{
+  list-style: none;
+}
+.growlItemContainer{
+  padding: 5px;
+  box-sizing: border-box;
+  text-align: left;
+}
+.growlImage{
+  display: inline-block;
+  box-sizing: border-box;
+  width: 120px;
+  text-align: center;
+  padding: 10px;
+  vertical-align: top;
+}
+.growlImage img{
+  width: 50px;
+  height: auto;
+  border-radius: 50px;
+}
+.growlcontent{
+  display: inline-block;
+  box-sizing: border-box;
+  width: 480px;
+
+}
+h3.posterName{
+  font-weight: bold;
+}
+.growlerContent h3{
+  font-weight: normal;
+  font-size: 14px;
+}
+h2.postTitle{
+  font-size: 18px;
+}
