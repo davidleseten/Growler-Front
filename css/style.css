@@ -2,9 +2,14 @@ body {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
+  background-color: rgba(10, 10, 10, .8);
+  color: black;
+  text-shadow: -1px 0 white, 0 .5px white, .5px 0 white, 0 -1px white;
+
 }
 h1{
   font-family: 'Fugaz One', cursive;
+  font-weight: 800;
 }
 #growl-list li{
   list-style: none;
@@ -12,7 +17,7 @@ h1{
 .growlItemContainer{
   padding: 5px;
   box-sizing: border-box;
-  text-align: left;
+  text-align: center;
 }
 .growlImage{
   display: inline-block;
@@ -23,23 +28,39 @@ h1{
   vertical-align: top;
 }
 .growlImage img{
-  width: 50px;
+  width: 110px;
   height: auto;
-  border-radius: 50px;
+  border-radius: 25px;
+
 }
 .growlcontent{
   display: inline-block;
-  box-sizing: border-box;
+  /*box-sizing: border-box;*/
   width: 480px;
+  text-align: center;
+  position: relative;
+  border: 2px black dashed;
+  /*padding: 25px;*/
 
 }
 h3.posterName{
-  font-weight: bold;
+  /*font-weight: bold;*/
+  /*display: inline;*/
 }
-.growlerContent h3{
+h3{
   font-weight: normal;
-  font-size: 14px;
+  display: inline-block;
+  font-size: 12px;
+  text-align: right;
+  padding-left: 15px;
+  text-shadow: none;
+
 }
 h2.postTitle{
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: left;
+  display: inline-block;
+  padding-left: 15px;
+
 }
